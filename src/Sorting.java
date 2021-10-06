@@ -3,6 +3,7 @@ public class Sorting {
         switch (algorithmID){
             case 2:
                 insertionSort(arr);
+                break;
         }
     }
     static void insertionSort(int [] arr){

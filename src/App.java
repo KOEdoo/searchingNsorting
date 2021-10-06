@@ -19,13 +19,14 @@ public class App {
             case 1:
                 System.out.println("Enter search key");
                 int key = scanner.nextInt();
-                scanner.close();
-                Searching.search(arr, key);
+                System.out.print(Searching.search(identifiers[1], arr, key)); 
+                break;
             case 2:
                 Sorting.sort(identifiers[1], arr);
+                printArray(arr);
+                break;
         }
         scanner.close();
-        printArray(arr);
     }
     
     static int[] inputArray(Scanner scanner){
