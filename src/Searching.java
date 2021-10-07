@@ -1,13 +1,14 @@
 public class Searching {
     static String search(int algorithmID, int[] arr, int key){
         int solution = 0;
+        int n = arr.length;
         String answer = "";
         switch(algorithmID){
             case 1:
                 solution = linearSearch(arr, key);
                 break;
             case 2:
-                solution = binarySearch(arr, key);
+                solution = binarySearch(arr,0,n-1, key);
                 break;
         }
         if(solution==-1){
@@ -31,10 +32,19 @@ public class Searching {
         }
         return -1;
     }
-    static int binarySearch(int[] arr, int key){
+    static int binarySearch(int[] arr,int l, int r, int key){
         int n = arr.length;
         if(isSorted(arr, n)){
-            // insert binary sort algorithm here
+            if (r >= l) {
+                int mid = l + (r - l) / 2;
+                if (arr[mid] == key)
+                    return mid;
+                if (arr[mid] > key)
+                    return binarySearch(arr, l, mid - 1, key);
+                return binarySearch(arr, mid + 1, r, key);
+            }
+
+            return -1;
         }
         return -2;
     }
