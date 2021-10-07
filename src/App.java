@@ -12,21 +12,30 @@ algoritm ID = 6 => radix sort
 */
 public class App {
     public static void main(String[] args){ 
-        Scanner scanner = new Scanner(System.in);      
-        int [] identifiers = identifyProcessAndAlgorithm(scanner);
-        int[] arr = inputArray(scanner);
-        switch (identifiers[0]){
-            case 1:
-                System.out.println("Enter search key");
-                int key = scanner.nextInt();
-                System.out.print(Searching.search(identifiers[1], arr, key)); 
-                break;
-            case 2:
-                Sorting.sort(identifiers[1], arr);
-                printArray(arr);
-                break;
-        }
-        scanner.close();
+        Scanner scanner = new Scanner(System.in);
+        int[] identifiers;
+        int[] arr;
+        while(true){
+            identifiers = identifyProcessAndAlgorithm(scanner);
+            switch (identifiers[0]){
+                case 1:
+                    arr = inputArray(scanner);
+                    System.out.println("Enter search key");
+                    int key = scanner.nextInt();
+                    System.out.print(Searching.search(identifiers[1], arr, key)); 
+                    break;
+                case 2:
+                    arr = inputArray(scanner);
+                    Sorting.sort(identifiers[1], arr);
+                    printArray(arr);
+                    System.out.print("\n");
+                    break;
+                case 3:
+                    scanner.close();
+                    System.exit(0);
+                    break;
+            }       
+        }  
     }
     
     static int[] inputArray(Scanner scanner){
@@ -46,7 +55,6 @@ public class App {
 
     }
     static int[] identifyProcessAndAlgorithm(Scanner scanner){
-        //Scanner scanner  = new Scanner(System.in);
         int processID = 0;
         int algorithmID = 0;
         System.out.println("Do you wish to search or sort?"); 
@@ -61,38 +69,30 @@ public class App {
             System.out.println("which sorting algorithm do you wish to implement");
             System.out.println("\nselection  \ninsertion  \nshell  \nquick  \nmerge  \nradix ");
         }
-        String algorithm = scanner.next();
-        if(algorithm.equals("linear"))
-        algorithmID = 1;
-        else if(algorithm.equals("binary"))
-        algorithmID = 2;
-        else if(algorithm.equals("selection"))
-        algorithmID = 1;
-        else if(algorithm.equals("insertion"))
-        algorithmID = 2;
-        else if(algorithm.equals("shell"))
-        algorithmID = 3;
-        else if(algorithm.equals("quick"))
-        algorithmID = 4;
-        else if(algorithm.equals("merge"))
-        algorithmID = 5;
-        else if(algorithm.equals("radix"))
-        algorithmID = 6;       
-        //scanner.close();
+        else{
+            processID = 3;
+        }
+        if (processID!=3){
+            String algorithm = scanner.next();
+            if(algorithm.equals("linear"))
+            algorithmID = 1;
+            else if(algorithm.equals("binary"))
+            algorithmID = 2;
+            else if(algorithm.equals("selection"))
+            algorithmID = 1;
+            else if(algorithm.equals("insertion"))
+            algorithmID = 2;
+            else if(algorithm.equals("shell"))
+            algorithmID = 3;
+            else if(algorithm.equals("quick"))
+            algorithmID = 4;
+            else if(algorithm.equals("merge"))
+            algorithmID = 5;
+            else if(algorithm.equals("radix"))
+            algorithmID = 6;       
+        }
         int[] identifiers = {processID, algorithmID};
         return identifiers;
-    }
-   
-    static boolean isSorted(int [] arr, int n){
-        if (n == 0 || n == 1){
-            return true;
-        }
-        for (int i=1; i<n;i++){
-            if (arr[i-1]>arr[i]){
-                return false;
-            }
-        }
-        return true;
     }
     static void printArray(int[]arr){
         int n = arr.length;

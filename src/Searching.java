@@ -11,10 +11,13 @@ public class Searching {
                 break;
         }
         if(solution==-1){
-            answer = "key cannot be found in array";
+            answer = "key cannot be found in array\n";
+        }
+        else if(solution==-2){
+            answer = "cannot implement binary sort on unsorted array\n";
         }
         else{
-            answer = Integer.toString(solution) + "was found";
+            answer = Integer.toString(solution) + " was found\n";
         }
         
         return answer;
@@ -29,6 +32,21 @@ public class Searching {
         return -1;
     }
     static int binarySearch(int[] arr, int key){
-        return -1;
+        int n = arr.length;
+        if(isSorted(arr, n)){
+            // insert binary sort algorithm here
+        }
+        return -2;
+    }
+    static boolean isSorted(int [] arr, int n){
+        if (n == 0 || n == 1){
+            return true;
+        }
+        for (int i=1; i<n;i++){
+            if (arr[i-1]>arr[i]){
+                return false;
+            }
+        }
+        return true;
     }
 }
