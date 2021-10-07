@@ -1,6 +1,9 @@
 public class Sorting {
     static void sort (int algorithmID, int[] arr){
         switch (algorithmID){
+            case 1:
+                selectionSort(arr);
+                break;
             case 2:
                 insertionSort(arr);
                 break;
@@ -15,6 +18,20 @@ public class Sorting {
 
 //create sort algorithm functions for each 
 //include their switch cases in the sort function following numbering of the above comment 
+    static void selectionSort(int[] arr){
+        int n = arr.length;      
+        for (int i = 0; i < n-1; i++)
+        {
+            int min_idx = i;
+            for (int j = i+1; j < n; j++)
+                if (arr[j] < arr[min_idx])
+                    min_idx = j;
+            int temp = arr[min_idx];
+            arr[min_idx] = arr[i];
+            arr[i] = temp;
+        }
+    }
+     
     static void insertionSort(int [] arr){
         int n = arr.length;
         for(int i = 1; i<n;i++){
@@ -27,5 +44,5 @@ public class Sorting {
             arr[j+1]=key;
         }
     }
-     
 }
+
